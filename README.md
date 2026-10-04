@@ -214,4 +214,3 @@ This is a software prototype. The slots are represented using directories instea
 
 **Ritu Raj**
 
-B.Tech CSE
