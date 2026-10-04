@@ -184,13 +184,16 @@ For rollback testing:
 
 ## Technologies
 
-- C
-- C++
-- Linux
-- Bash
-- Linux Kernel Module
-- Make
-- Git / GitHub
+## Technologies
+
+- **Linux Device Drivers** – Character device driver and `/dev/ota_status`
+- **System Programming** – File handling, process execution, `ioctl()`, and Linux system interfaces
+- **C++ Programming** – OTA Manager, Boot Manager, Health Monitor and watch applications
+- **C Programming** – Linux kernel driver
+- **Linux** – Development and testing environment
+- **Bash** – Setup and automation scripts
+- **Make** – Driver compilation
+- **Git / GitHub** – Version control and project submission
 
 ---
 
