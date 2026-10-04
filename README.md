@@ -87,11 +87,11 @@ ZeroDowntimeOTA/
 ├── tests/
 └── README.md
 ```
-[<img src="https://github.com/gopalritu/ZeroDowntime-OTA/blob/main/images/Driver%20compilation/1.png" >]
+[<img src="https://github.com/gopalritu/ZeroDowntime-OTA/blob/main/images/Project%20Structure/1.png" >]
 
-[<img src="https://github.com/gopalritu/ZeroDowntime-OTA/blob/main/images/Driver%20compilation/2.png" >]
+[<img src="https://github.com/gopalritu/ZeroDowntime-OTA/blob/main/images/Project%20Structure/2.png" >]
 
-[<img src="https://github.com/gopalritu/ZeroDowntime-OTA/blob/main/images/Driver%20compilation/3.png" >]
+[<img src="https://github.com/gopalritu/ZeroDowntime-OTA/blob/main/images/Project%20Structure/3.png" >]
 
 
 ## Main Files
