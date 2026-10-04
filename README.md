@@ -78,14 +78,7 @@ ZeroDowntimeOTA/
 │   ├── slot_a/
 │   ├── slot_b/
 │   └── state/
-│
-├── driver/
-├── scripts/
-├── updates/
-├── images/
-├── server/
-├── tests/
-└── README.md
+
 ```
 <img src="https://github.com/gopalritu/ZeroDowntime-OTA/blob/main/images/Project%20Structure/1.png" >
 
@@ -105,7 +98,7 @@ ZeroDowntimeOTA/
 - `ota_status_driver.c` – Linux device driver
 - `ota_status_ioctl.h` – ioctl definitions
 - `scripts/` – setup and build scripts
-
+<img src="https://github.com/gopalritu/ZeroDowntime-OTA/blob/main/images/Driver%20compilation/1.png" >
 ---
 
 ## Linux Driver
@@ -150,7 +143,7 @@ watch_v1 → Version 1
 watch_v2 → Version 2
 watch_v3 → Version 3
 ```
-
+<img src="https://github.com/gopalritu/ZeroDowntime-OTA/blob/main/images/Interface/1.png" >
 This helped me visually test the update and rollback flow instead of testing only through the terminal.
 
 ---
@@ -187,7 +180,7 @@ For rollback testing:
 ```bash
 ./health_monitor fail
 ```
-
+<img src="https://github.com/gopalritu/ZeroDowntime-OTA/blob/main/images/Initial%20sytem%20update/1.png" >
 
 ## Technologies
 
