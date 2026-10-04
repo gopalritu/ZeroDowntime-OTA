@@ -1,5 +1,3 @@
-# ZeroDowntime-OTA
-
 # ZeroDowntime OTA
 
 ### A/B Slot Based Rollback-Safe Embedded Linux OTA Update System
@@ -13,6 +11,8 @@ The main idea is to use two slots, **A and B**, for software updates. One slot i
 If the new version works properly, it becomes active. If it fails, the system goes back to the previous working version.
 
 I also implemented a Linux character device driver to show the OTA status using `/dev/ota_status`.
+
+The update process was also tested using a **watch interface**, where different watch versions were used to represent different software versions.
 
 ---
 
@@ -28,6 +28,9 @@ I also implemented a Linux character device driver to show the OTA status using 
        Boot Manager
              |
              ↓
+       Watch Interface
+             |
+             ↓
        Health Check
         /        \
        ↓          ↓
@@ -37,20 +40,28 @@ I also implemented a Linux character device driver to show the OTA status using 
     SUCCESS     ROLLBACK
 ```
 
+For testing, I used different watch versions:
+
+```text
+Watch v1 → Initial version
+Watch v2 → Successful update
+Watch v3 → Failed update / rollback testing
+```
+
 Example:
 
 ```text
-Slot A → v1.0  (Active)
-Slot B → v2.0  (Update)
+Slot A → Watch v1
+Slot B → Watch v2
 ```
 
-If v2.0 works:
+After a successful update:
 
 ```text
-Slot B → v2.0  (Active)
+Slot B → Watch v2 (Active)
 ```
 
-If the update fails, Slot A remains active.
+For rollback testing, Watch v3 was intentionally treated as a failed version, so the previous working watch version remained active.
 
 ---
 
@@ -60,6 +71,9 @@ If the update fails, Slot A remains active.
 ZeroDowntimeOTA/
 ├── device/
 │   ├── app/
+│   │   ├── watch_v1.cpp
+│   │   ├── watch_v2.cpp
+│   │   └── watch_v3.cpp
 │   ├── ota/
 │   ├── slot_a/
 │   ├── slot_b/
@@ -73,7 +87,7 @@ ZeroDowntimeOTA/
 ├── tests/
 └── README.md
 ```
-
+<img src="https://github.com/gopalritu/ZeroDowntime-OTA/images/Project Structure/1.png" >
 ---
 
 ## Main Files
@@ -81,6 +95,9 @@ ZeroDowntimeOTA/
 - `ota_manager.cpp` – checks update and slots
 - `boot_manager.cpp` – handles pending slot and boot attempts
 - `health_monitor.cpp` – checks success or failure
+- `watch_v1.cpp` – watch version 1
+- `watch_v2.cpp` – watch version 2
+- `watch_v3.cpp` – watch version 3 used for rollback testing
 - `ota_status_driver.c` – Linux device driver
 - `ota_status_ioctl.h` – ioctl definitions
 - `scripts/` – setup and build scripts
@@ -118,6 +135,22 @@ ACTIVE_SLOT=B PENDING_SLOT=NONE STATUS=SUCCESS BOOT_ATTEMPTS=0
 
 ---
 
+## Watch Interface Testing
+
+The OTA update process was tested using a simple **watch interface**.
+
+Different watch applications were used to represent different software versions.
+
+```text
+watch_v1 → Version 1
+watch_v2 → Version 2
+watch_v3 → Version 3
+```
+
+This helped me visually test the update and rollback flow instead of testing only through the terminal.
+
+---
+
 ## Run
 
 Build the driver:
@@ -151,43 +184,6 @@ For rollback testing:
 ./health_monitor fail
 ```
 
----
-
-## Screenshots
-
-<details>
-<summary>Driver compilation</summary>
-
-![Driver Compilation](screenshots/Driver%20compilation/1.png)
-
-</details>
-
-<details>
-<summary>Initial system update</summary>
-
-![Initial System Update](screenshots/Initial%20system%20update/1.png)
-
-</details>
-
-<details>
-<summary>Interface</summary>
-
-![Interface](screenshots/Interface/1.png)
-
-</details>
-
-<details>
-<summary>Project Structure</summary>
-
-![Project Structure 1](screenshots/Project%20Structure/1.png)
-
-![Project Structure 2](screenshots/Project%20Structure/2.png)
-
-![Project Structure 3](screenshots/Project%20Structure/3.png)
-
-</details>
-
----
 
 ## Technologies
 
